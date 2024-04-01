@@ -57,7 +57,10 @@ def open_genius_website(artist, song_title):
     
     
 def replace_with_hyphen(str):
-    str = str.replace('(', '-').replace(')', '-').replace(' ', '-')
+    str = str.replace('(', '-').replace(')', '-').replace(' ', '-').replace('--', '-')
+    
+    if (str[-1] == '-'):
+        str = str[:-1]
     
     print(str)
     return str
