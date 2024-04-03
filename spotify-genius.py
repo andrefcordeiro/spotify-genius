@@ -25,7 +25,6 @@ def get_process_id_by_name():
 
 def get_hwnds_for_pid(pid):
     def callback(hwnd, hwnds):
-        #if win32gui.IsWindowVisible(hwnd) and win32gui.IsWindowEnabled(hwnd):
         _, found_pid = win32process.GetWindowThreadProcessId(hwnd)
 
         if found_pid == pid:
@@ -51,18 +50,24 @@ def get_spotify_handle():
                 return hwnd
 
 def open_genius_website(artist, song_title):
-    print(f'Song playing: {artist} - {song_title}\n')
-    
     os.system(f"start \"\" https://genius.com/{artist}-{song_title}-lyrics")
     
     
+def replace_all(str, strs_to_replace, replacement):
+    for old_value in strs_to_replace:
+        str = str.replace(old_value, replacement)
+    return str
+
+    
 def replace_with_hyphen(str):
-    str = str.replace('(', '-').replace(')', '-').replace(' ', '-').replace('--', '-')
+    rep_with_hyphen = ['(', ')', ' ', '--']
+    rep_with_empty = [',', '\'', '\"', '*', '\\', '/', '?']
+
+    str = replace_all(str, rep_with_empty, '')
+    str = replace_all(str, rep_with_hyphen, '-')
     
-    if (str[-1] == '-'):
-        str = str[:-1]
+    str = str.rstrip('-').lstrip('-')
     
-    print(str)
     return str
 
 if __name__ == '__main__':
@@ -76,11 +81,13 @@ if __name__ == '__main__':
         
         try:    
             if artist_song_title != previous_artist_song_title:
+                print(f'Song playing: {artist_song_title[0]} - {artist_song_title[1]}\n')
                 previous_artist_song_title = artist_song_title
                 
                 artist = replace_with_hyphen(artist_song_title[0])
                 song_title = replace_with_hyphen(artist_song_title[1])
 
                 open_genius_website(artist, song_title)
-        except:
+        except Exception as error:
             print(f'Error when trying to open genius website for song: {artist_song_title}')
+            print(f'{error}\n')
