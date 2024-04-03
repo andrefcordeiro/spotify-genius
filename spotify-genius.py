@@ -65,17 +65,25 @@ def replace_with_hyphen(str):
 
     str = replace_all(str, rep_with_empty, '')
     str = replace_all(str, rep_with_hyphen, '-')
+    str = str.replace('&', 'and')
     
     str = str.rstrip('-').lstrip('-')
     
     return str
+
+
+def remove_features(title_song):
+    if '(feat' in title_song:
+        return title_song.split('(feat')[0]
+    return title_song
+
 
 if __name__ == '__main__':
     while True:     
         spotify_handle = get_spotify_handle()
         window_title = get_window_title_by_handle(spotify_handle)
         
-        window_title = unidecode(window_title)
+        window_title = unidecode(window_title).lower()
         
         artist_song_title = window_title.split(' - ')
         
@@ -85,7 +93,8 @@ if __name__ == '__main__':
                 previous_artist_song_title = artist_song_title
                 
                 artist = replace_with_hyphen(artist_song_title[0])
-                song_title = replace_with_hyphen(artist_song_title[1])
+                song_title = remove_features(artist_song_title[1])
+                song_title = replace_with_hyphen(song_title)
 
                 open_genius_website(artist, song_title)
         except Exception as error:
