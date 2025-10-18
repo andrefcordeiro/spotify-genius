@@ -61,7 +61,7 @@ def replace_all(str, strs_to_replace, replacement):
     
 def replace_with_hyphen(str):
     rep_with_hyphen = ['(', ')', ' ', '--']
-    rep_with_empty = [',', '\'', '\"', '*', '\\', '/', '?']
+    rep_with_empty = [',', '\'', '\"', '*', '\\', '/', '?', ':', '.', '$', '!']
 
     str = replace_all(str, rep_with_empty, '')
     str = replace_all(str, rep_with_hyphen, '-')
@@ -75,6 +75,9 @@ def replace_with_hyphen(str):
 def remove_features(title_song):
     if '(feat' in title_song:
         return title_song.split('(feat')[0]
+    
+    if '(with' in title_song:
+        return title_song.split('(with')[0]
     return title_song
 
 
@@ -86,7 +89,9 @@ if __name__ == '__main__':
         window_title = unidecode(window_title).lower()
         
         artist_song_title = window_title.split(' - ')
-        
+
+        if len(artist_song_title) != 2:
+            continue
         try:    
             if artist_song_title != previous_artist_song_title:
                 print(f'Song playing: {artist_song_title[0]} - {artist_song_title[1]}\n')
