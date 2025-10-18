@@ -48,4 +48,4 @@ pip install pyinstaller
 pyinstaller --onefile --icon=assets/spotify-genius.ico spotify-genius.py
 ```
 
-The binary `spotify-genius.exe` will be created in `dist/main`.
+The binary `spotify-genius.exe` will be created in `dist`.
