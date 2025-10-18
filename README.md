@@ -4,11 +4,35 @@ This python script works as a listener to the music that is being played on the 
 
 The program gets the information of the currently playing song (artist and title) and automatically opens its respective page on Genius website, so the user can keep track of the song lyrics, besides taking advantage of other tools available on the website.
 
+## How to download
+
+Go to [releases](https://github.com/andrefcordeiro/spotify-genius-automation/releases) and download the latest version.
+
+## Hot to run by yourself
+
+### Requirements
+
+- Python 3
+
+### Steps
+
+1. Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+2. Run
+
+```
+python spotify-genius.py
+```
+
 ## How to generate the windows .exe
 
 ### Requirements
 
-- Python installed
+- Python 3
 
 ### Steps
 
