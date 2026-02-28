@@ -1,8 +1,6 @@
 import time
 from spotify_genius.platforms import get_current_song
-from spotify_genius.core import (
-    open_genius,
-)
+from spotify_genius.core import open_genius
 
 def run():
     previous = None
@@ -23,3 +21,6 @@ def run():
             open_genius(artist, title)
 
         time.sleep(2)
+
+if __name__ == "__main__":
+    run()
