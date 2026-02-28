@@ -1,12 +1,8 @@
 import time
 from spotify_genius.platforms import get_current_song
 from spotify_genius.core import (
-    normalize,
-    replace_with_hyphen,
-    remove_features,
     open_genius,
 )
-
 
 def run():
     previous = None
@@ -18,17 +14,12 @@ def run():
             time.sleep(2)
             continue
 
-        artist = normalize(artist)
-        title = normalize(title)
-
         current = (artist, title)
 
         if current != previous:
             previous = current
+            print(f'Now playing: {artist} - {title}')
 
-            artist_clean = replace_with_hyphen(artist)
-            title_clean = replace_with_hyphen(remove_features(title))
-
-            open_genius(artist_clean, title_clean)
+            open_genius(artist, title)
 
         time.sleep(2)
