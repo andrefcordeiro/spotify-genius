@@ -45,7 +45,8 @@ pip install pyinstaller
 2. In the root folder of the project, run
 
 ```
-pyinstaller --onefile --icon=assets/spotify-genius.ico --name spotify-genius-win spotify-genius.py
+pip install .
+pyinstaller --clean --onefile --icon=assets/spotify-genius.ico --name spotify-genius-win --collect-all pywin32 --paths src src/spotify_genius/main.py
 ```
 
 The binary `spotify-genius.exe` will be created in `dist`.
