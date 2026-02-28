@@ -1,0 +1,26 @@
+[project]
+name = "spotify-genius"
+version = "0.1.0"
+description = "Open Genius lyrics for the currently playing Spotify track"
+authors = [{ name = "Andre Ferreira" }]
+requires-python = ">=3.10"
+
+dependencies = [
+    "unidecode",
+    "pywin32; platform_system == 'Windows'",
+    "psutil; platform_system == 'Windows'",
+    "dbus-python; platform_system == 'Linux'"
+]
+
+[project.scripts]
+spotify-genius = "spotify_genius.main:run"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
