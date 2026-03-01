@@ -3,6 +3,7 @@ from spotify_genius.platforms import get_current_song
 from spotify_genius.core import open_genius
 
 def run():
+    print('Waiting for tracks...')
     previous = None
 
     while True:
@@ -16,7 +17,7 @@ def run():
 
         if current != previous:
             previous = current
-            print(f'Now playing: {artist} - {title}')
+            print(f'\nNow playing: {artist} - {title}')
 
             open_genius(artist, title)
 
