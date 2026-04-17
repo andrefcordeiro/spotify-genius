@@ -1,4 +1,12 @@
+import sys
 import time
+from pathlib import Path
+
+# Make `python src/spotify_genius/main.py` import this checkout instead of any
+# previously installed spotify_genius package.
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from spotify_genius.platforms import get_current_song
 from spotify_genius.core import open_genius
 
